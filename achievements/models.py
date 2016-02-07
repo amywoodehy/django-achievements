@@ -44,7 +44,7 @@ def load_classes(classes=settings.ACHIEVEMENT_CLASSES, *args, **kwargs):
                     engine.register_achievement(cl)
         except ImproperlyConfigured:
             raise
-        except Exception, exc:
+        except Exception as exc:
             logger.error("Exception catched while trying to register achievements class %s " % exc)
             raise ImproperlyConfigured("ACHIEVEMENT_CLASSES attribute must be set properly for them to be loaded into the engine : %s" % exc)
 
@@ -76,8 +76,8 @@ class AchievementEngineConf(AppConf):
     class Meta:
         prefix = 'achievement'
 
-    def configure_classes(self, value):
-        pass
+    #def configure_classes(self, value):
+    #    pass
 
 # connect to the end of the syncdb command signal to reload achievements at that time.
 if 'south' in settings.INSTALLED_APPS:
